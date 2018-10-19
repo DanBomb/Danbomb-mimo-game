@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+  void Start () {
+
+  }
+
+  void Update () {
+    var rigidBody = GetComponent<Rigidbody2D> ();
+    var transform = GetComponent<Transform> ();
+    if (Input.GetKey ("right")) {
+      rigidBody.velocity = new Vector2 (5, rigidBody.velocity.y);
+    }
+    if (Input.GetKey ("left")) {
+      rigidBody.velocity = new Vector2 (-5, rigidBody.velocity.y);
+    }
+    if (Input.GetKeyDown ("space")) {
+      rigidBody.velocity = new Vector2 (rigidBody.velocity.x, 10);
+    }
+    if (transform.position.y < -6) {
+      if (transform.position.x < 2) {
+        transform.position = new Vector2 (-5, 2);
+      } else {
+        transform.position = new Vector2 (2, 2);
+      }
+    }
+  }
 }
